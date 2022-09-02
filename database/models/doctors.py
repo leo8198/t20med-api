@@ -13,6 +13,7 @@ class Doctor(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
     email = Column(String)
+    password = Column(String)
     phone_number = Column(String)
     crm = Column(String)
     crm_state = Column(String)
