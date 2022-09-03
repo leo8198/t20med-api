@@ -1,3 +1,4 @@
 #!/bin/bash
 
-pytest tests
+pytest tests/authentication_test.py \
+       tests/users_test.py 

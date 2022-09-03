@@ -7,7 +7,7 @@ from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
 from services.authentication.routers.login import router as login_router
 from services.authentication.routers.reset_password import router as reset_password_router
-#from services.authentication.routers.sign_up import router as sign_up_router
+from services.authentication.routers.sign_up import router as sign_up_router
 
 
 app = FastAPI(
@@ -41,3 +41,4 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 # Routers
 app.include_router(login_router)
 app.include_router(reset_password_router)
+app.include_router(sign_up_router)
