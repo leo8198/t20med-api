@@ -3,8 +3,6 @@ from fastapi import APIRouter, HTTPException, BackgroundTasks
 from fastapi.params import Depends
 from fastapi.security import  OAuth2PasswordRequestForm
 from services.authentication.crud.authentication import Authentication, User, ResetPassword
-#from app.schemas.user import UserReset
-#from app.external.apis.my_email import EmailAPI
 from services.responses.errors import CustomError
 from services.responses.responses import CustomResponse
 
@@ -14,7 +12,7 @@ router = APIRouter(
 )
 
 # JWT expire time in minutes
-ACCESS_TOKEN_EXPIRE_MINUTES = 8*60
+ACCESS_TOKEN_EXPIRE_MINUTES = 14*60
 
 # Endpoint to create the access token
 @router.post("/login")
