@@ -7,6 +7,9 @@ class BasicCrud():
         self.model = model
         self.db = get_db()
 
+    def __del__(self):
+        self.db.close()
+
     def get(self, id):
         return self.db.query(self.model).get(id)
 
