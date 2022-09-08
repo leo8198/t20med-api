@@ -28,7 +28,7 @@ jobs:
         cp .env.example .env
     - name: Build the stack
       run: |
-        docker compose up -d
+        docker compose up -f docker/docker-compose.test.yml -d
         
     - name: Test with pytest
       run: |
