@@ -28,8 +28,14 @@ jobs:
         cp .env.example .env
     - name: Build the stack
       run: |
-        docker compose up -d
-        
+        docker compose -f docker/docker-compose.test.yml up -d 
+    - name: Install pytest
+      run: |
+        pip install -r requirements.test.txt
+    - name: Remove build env variable and use the test env
+      run: |
+        rm .env
+        cp .env.test .env
     - name: Test with pytest
       run: |
         pytest tests/authentication_test.py tests/users_test.py
