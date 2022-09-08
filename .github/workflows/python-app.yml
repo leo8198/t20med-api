@@ -31,7 +31,7 @@ jobs:
         docker compose -f docker/docker-compose.test.yml up -d 
     - name: Install pytest
       run: |
-        pip install pytest
+        pip install requirements.test.text
     - name: Test with pytest
       run: |
         pytest tests/authentication_test.py tests/users_test.py
