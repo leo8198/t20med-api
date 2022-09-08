@@ -12,10 +12,6 @@ class BaseConfig(BaseSettings):
     jwt_algorithm: str = "HS256"
     super_user_email: str
     super_user_username: str
-    volpe_hub_url: str
-    volpe_hub_api_key: str
-    username_volpe: str
-    password_volpe: str
     sendgrid_sender_email: str 
     sendgrid_api_key: str
     reset_password_endpoint: str
@@ -23,7 +19,6 @@ class BaseConfig(BaseSettings):
     my_api_url: str
     aws_bucket_name: str
     test_cpf: str
-    capmonster_api_key: str
     redis_url: str
     aws_access_key_id: str
     aws_secret_access_key: str
