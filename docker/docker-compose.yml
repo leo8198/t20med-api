@@ -1,0 +1,30 @@
+# Docker compose for local development
+
+version: '3.4'
+
+services:
+     
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=leotarla
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    hostname: postgres
+
+  monolith:
+    build:
+      context: ..
+      dockerfile: .
+    volumes:
+      - ./services/monolith:/home/root/monolith/app/
+    ports:
+      - '5000:5000'
+    depends_on:
+      - postgres
+    hostname: monolith
+
+volumes:
+  postgres:
