@@ -1,0 +1,23 @@
+# Docker compose for production environment
+
+version: '3.4'
+
+services:
+     
+  monolith:
+    image: monolith:latest
+    deploy: 
+      replicas: 1
+      update_config:
+        parallelism: 2
+      restart_policy:
+        condition: on-failure
+    healthcheck:
+      test: ["CMD", "curl","-f","http://localhost:5000/api/v1/health"]
+      interval: 1m
+      timeout: 30s
+      retries: 2
+      start_period: 30s
+    ports:
+      - '5000:5000'
+    hostname: monolith
