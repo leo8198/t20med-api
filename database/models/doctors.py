@@ -24,3 +24,5 @@ class Doctor(Base):
     crm_photo_back = Column(String)
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+    approved = Column(Boolean)
+    banned = Column(Boolean)
