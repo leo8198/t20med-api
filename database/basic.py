@@ -13,6 +13,13 @@ class BasicCrud():
     def get(self, id):
         return self.db.query(self.model).get(id)
 
+    def get_by_id(self, attribute, model_id):
+        return self.db.query(
+            self.model
+        ).filter(
+            attribute == model_id,
+        ).all()
+
     def get_all(self):
         return self.db.query(self.model).all()
 

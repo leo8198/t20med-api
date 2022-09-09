@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKey, Integer, String, DateTime, Enum, Float
+from sqlalchemy import Column, ForeignKey, Integer, String, DateTime, Date, Time, Enum, Float
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 from database.connection import Base
@@ -12,7 +12,7 @@ class Agenda(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     doctor_id = Column(Integer, ForeignKey("doctors.id"))
-    date = Column(String)
-    time = Column(String)
+    date = Column(Date)
+    time = Column(Time)
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
