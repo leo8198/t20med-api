@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mkdir uploads
+mkdir -p uploads
 
 # Sleep to wait the database docker mount
 sleep 10

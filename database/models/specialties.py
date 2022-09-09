@@ -7,7 +7,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 
 
 # Activities table
-class DoctorSpecialty(Base):
+class Specialty(Base):
     __tablename__ = "specialties"
 
     id = Column(Integer, primary_key=True, index=True)
