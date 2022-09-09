@@ -4,6 +4,9 @@ from config import settings
 import requests
 from faker import Faker 
 import random
+from tests.crud import CrudHelper
+from database.models.doctors import Doctor
+from tests.file_data import file_data_jpeg
 
 # Test the patient creator - Success case
 def test_create_patient():
@@ -70,4 +73,43 @@ def test_create_doctor():
     assert response.status_code == 200
     assert response.json()['detail']['status'] == 'ok'
     assert response.json()['detail']['status_code'] == 0
+
+# Test the send of the doctor documents - Success Case
+def test_sign_up_documents():
     
+    url = settings.api_test_url
+
+
+    payload = json.dumps({
+        "data": [
+            {
+                "file_name": str(random.randint(11111111,99999999)) + '.jpeg',
+                "file_type": "rg_photo_front",
+                "file_data": file_data_jpeg
+            }
+        ]
+    })
+
+    # Do the login to get the token
+    username = CrudHelper().get_last_result(Doctor).email
+    password = "test123"
+
+    response = login_for_tests('doctor',password,username)
+    
+    # Check the response
+    assert response.status_code == 200
+    assert response.json()['access_token'] != None
+
+    headers = {
+        'Authorization': 'Bearer ' + response.json()['access_token'],
+        'Content-Type': 'application/json'
+    }
+
+
+    response = requests.request("POST", url + 'api/v1/users/documents', headers=headers, data=payload)
+
+
+    # Check the response
+    assert response.status_code == 200
+    assert response.json()['detail']['status'] == 'ok'
+    assert response.json()['detail']['status_code'] == 0

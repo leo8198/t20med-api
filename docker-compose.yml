@@ -16,10 +16,10 @@ services:
 
   monolith:
     build:
-      context: ..
-      dockerfile: .
+      context: .
+      dockerfile: Dockerfile
     volumes:
-      - ./services/monolith:/home/root/monolith/app/
+      - ./services:/home/root/monolith/services/
     ports:
       - '5000:5000'
     depends_on:
