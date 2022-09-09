@@ -37,7 +37,7 @@ class RemoteStorage():
         if file_data:
 
             # Create a file in the local storage
-            with open(local_file_path + '/' + local_file_name, 'wb') as f:
+            with open(local_file_path  + local_file_name, 'wb') as f:
                 f.write(file_data)
 
         s3_client = self.aws_instance()
@@ -56,7 +56,7 @@ class RemoteStorage():
 
         # Delete the file in the local storage  
         if delete_after_upload:
-            self.delete_local(local_file_path+local_file_name)
+            LocalStorage().delete_file(local_file_path,local_file_name)
         
         return True
 

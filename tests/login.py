@@ -2,7 +2,7 @@ import requests
 from config import settings
 
 # Login function for tests
-def login_for_tests( user_type: str ,password=None):
+def login_for_tests( user_type: str,password=None,username=None):
 
     # Login in the platform
     headers = {
@@ -10,10 +10,12 @@ def login_for_tests( user_type: str ,password=None):
         'Content-Type': 'application/x-www-form-urlencoded',
     }
 
-    if password is None:
+    if not password:
         password = settings.password_test
 
-    username = settings.username_test
+    if not username:
+        username = settings.username_test
+        
     url = settings.api_test_url
     query_string = {
         'user_type': user_type

@@ -31,7 +31,6 @@ class User(BaseModel):
     username: str
     email: str
     id: int
-    role: str
 
 # User model for password
 class UserInDB(User):
@@ -108,8 +107,16 @@ class Authentication():
         encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
         return encoded_jwt
 
+    async def get_doctor(self, token:str = Depends(oauth2_scheme)):
+        user = await self.get_current_user('doctor',token)
+        return user
+
+    async def get_patient(self,token: str = Depends(oauth2_scheme)):
+        user =  await self.get_current_user('patient',token)
+        return user
+
     # Verify if the JWT token is valid. If yes, get the user. If not, return exception
-    async def get_current_user(self,token: str = Depends(oauth2_scheme)):
+    async def get_current_user(self,user_type: str,token: str = Depends(oauth2_scheme)):
                 
 
         # Decode the JWT token and verify if it's valid
@@ -128,7 +135,7 @@ class Authentication():
         )
         
         # if is valid return the user
-        user = self.get_user(email=username)
+        user = self.get_user(email=username,user_type=user_type)
         if user is None:
             raise CustomError().error_401(
             'User not found'
@@ -138,12 +145,15 @@ class Authentication():
     
 
     # Check if the user has admin rights
-    def is_doctor(self, user: Doctor):
+    def is_doctor(self, user):
         '''Return True if the user is an admin'''
-        if user is None or user.role != 0:
-            return False
         
-        return True
+        comparision_user = Authentication().get_user(user.email,'doctor')
+
+        if comparision_user:
+            return True
+        
+        return False
 
 
 class ResetPassword():
