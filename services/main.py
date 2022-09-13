@@ -10,6 +10,7 @@ from services.authentication.routers.reset_password import router as reset_passw
 from services.authentication.routers.sign_up import router as sign_up_router
 from services.health import router as health_router
 from services.doctors.routers.appointments import router as appointments_router
+from services.doctors.routers.agenda import router as agenda_router
 
 app = FastAPI(
     title = 'T20Med-API',
@@ -45,3 +46,4 @@ app.include_router(reset_password_router)
 app.include_router(sign_up_router)
 app.include_router(health_router)
 app.include_router(appointments_router)
+app.include_router(agenda_router)

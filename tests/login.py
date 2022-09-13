@@ -14,7 +14,10 @@ def login_for_tests( user_type: str,password=None,username=None):
         password = settings.password_test
 
     if not username:
-        username = settings.username_test
+        if user_type == 'doctor':
+            username = settings.doctorname_test
+        else: 
+            username = settings.username_test
         
     url = settings.api_test_url
     query_string = {
