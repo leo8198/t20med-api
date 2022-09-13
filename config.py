@@ -34,6 +34,7 @@ class DevelopmentSettings(ProductionSettings):
     api_test_url: str
     username_test: str
     password_test: str
+    doctorname_test: str
 
 
 class TestSettings(DevelopmentSettings):
