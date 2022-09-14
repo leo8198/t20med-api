@@ -11,6 +11,13 @@ from services.authentication.routers.sign_up import router as sign_up_router
 from services.health import router as health_router
 from services.doctors.routers.appointments import router as appointments_router
 from services.doctors.routers.agenda import router as agenda_router
+import sentry_sdk
+from config import settings
+
+sentry_sdk.init(
+    dsn=settings.sentry_api_url,
+    traces_sample_rate=1.0,
+)
 
 app = FastAPI(
     title = 'T20Med-API',
