@@ -23,6 +23,7 @@ class BaseConfig(BaseSettings):
     aws_access_key_id: str
     aws_secret_access_key: str
     gotenberg_url: str
+    sentry_api_url: str
 
     class Config:
         env_file = ".env"
