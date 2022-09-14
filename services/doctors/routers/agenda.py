@@ -45,3 +45,25 @@ async def post_agenda(
             'User not authorized to access this resource'
         )
 
+
+# Delete doctor agenda
+@router.delete("/doctors/agenda/{agenda_id}")
+async def delete_agenda(
+    agenda_id: int,
+    current_user: User = Depends(Authentication().get_doctor) 
+):
+
+    if current_user:
+
+        
+        try:
+            AgendaManager().delete(agenda_id,current_user.id)
+        except Exception as e:
+            print(e)
+            return CustomError().error_500(
+                "Error when deleting the agenda")
+
+        return CustomResponse().success_without_data()
+
+    else:
+        CustomError().error_401("User not authenticated")

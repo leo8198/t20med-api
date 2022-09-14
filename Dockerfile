@@ -25,7 +25,10 @@ COPY . .
 RUN export $(grep -v '^#' .env | xargs)
 
 # Change ubuntu timezone
-ENV TZ="America/Sao_Paulo"
+ENV TZ=America/Sao_Paulo
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN apt-get install tzdata -y
+RUN dpkg-reconfigure -f noninteractive tzdata
 
 
 EXPOSE 5000

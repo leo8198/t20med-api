@@ -50,3 +50,12 @@ class AgendaManager(BasicCrud):
                 ]
 
         return agenda_final
+
+    def delete(self,agenda_id: int, doctor_id: int):
+        
+        self.db.query(Agenda).filter(
+            Agenda.id == agenda_id,
+            Agenda.doctor_id == doctor_id
+            ).delete()
+        self.db.commit()
+        return None
