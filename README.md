@@ -53,3 +53,7 @@ Production architecture diagram can be found [here](https://drive.google.com/fil
 It's recommended to use docker swarm and get the image from the company AWS ECR.
 
 `docker stack deploy -c docker-compose.prod.yml t20med-api`
+
+### Logging
+
+Access sentry dashboard
