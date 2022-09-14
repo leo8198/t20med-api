@@ -13,4 +13,4 @@ async def health_checker():
     return {'detail':{
                 'status':'ok',
                 'status_code':0,
-                'version': '1.0.0'},}
+                'version': '1.0.1'},}
