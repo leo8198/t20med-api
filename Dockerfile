@@ -31,7 +31,7 @@ RUN apt-get install tzdata -y
 RUN dpkg-reconfigure -f noninteractive tzdata
 
 
-EXPOSE 5000
+EXPOSE 80
 
 # Add root permissions to the current user
 RUN chown -R $USER:$USER .

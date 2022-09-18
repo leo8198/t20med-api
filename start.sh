@@ -11,4 +11,4 @@ echo -e "Database synced"
 
 # Just to start the authorization service
 python3 setup.py
-python3 -m uvicorn services.main:app --reload --host 0.0.0.0 --port 5000  
+python3 -m uvicorn services.main:app --reload --host 0.0.0.0 --port 80  

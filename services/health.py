@@ -13,7 +13,7 @@ async def health_checker():
     return {'detail':{
                 'status':'ok',
                 'status_code':0,
-                'version': '1.0.1'},}
+                'version': '1.0.2'},}
 
 # Sentry debug
 @router.get("/sentry-debug")

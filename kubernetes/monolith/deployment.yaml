@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monolith-app
+  namespace: t20med
+  labels:
+    app: monolith-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: monolith-app
+  template:
+    metadata:
+      labels:
+        app: monolith-app
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+                - arm64
+      containers:
+      - name: monolith
+        image: 660048935956.dkr.ecr.us-east-1.amazonaws.com/t20med:latest
+        ports:
+        - name: http
+          containerPort: 80
+        imagePullPolicy: IfNotPresent
