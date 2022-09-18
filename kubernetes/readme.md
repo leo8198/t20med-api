@@ -1,7 +1,7 @@
 ### Kubernetes Configuration Environment
 
 In production we use AWS EKS to manage the kubernetes cluster. We also use
-the fully self-managed AWS RDS for the PostgreeSQL database
+the fully self-managed AWS RDS for the PostgreeSQL database.
 
 ### Canary deployment
 
