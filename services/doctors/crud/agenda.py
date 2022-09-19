@@ -1,5 +1,3 @@
-
-
 from datetime import datetime
 from database.basic import BasicCrud
 from database.models.agenda import Agenda
