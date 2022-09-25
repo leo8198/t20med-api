@@ -25,3 +25,11 @@ module "alb" {
   subnet1      = "${module.vpc.subnet1}"
   subnet2      = "${module.vpc.subnet2}"
 }
+
+module "auto_scaling" {
+  source           = "./auto_scaling"
+  vpc_id           = "${module.vpc.vpc_id}"
+  subnet1          = "${module.vpc.subnet1}"
+  subnet2          = "${module.vpc.subnet2}"
+  target_group_arn = "${module.alb.alb_target_group_arn}"
+}
