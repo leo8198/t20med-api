@@ -5,6 +5,7 @@ provider "aws" {
 resource "aws_db_instance" "my-test-sql" {
   instance_class          = "${var.db_instance}"
   engine                  = "postgres"
+  engine_version          = "13.7"
   multi_az                = true
   storage_type            = "gp2"
   allocated_storage       = 20
