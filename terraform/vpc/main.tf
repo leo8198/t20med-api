@@ -104,6 +104,15 @@ resource "aws_security_group_rule" "allow-ssh" {
   cidr_blocks       = ["0.0.0.0/0"]
 }
 
+resource "aws_security_group_rule" "http_inbound_access" {
+  from_port         = 80
+  protocol          = "tcp"
+  security_group_id = "${aws_security_group.test_sg.id}"
+  to_port           = 80
+  type              = "ingress"
+  cidr_blocks       = ["0.0.0.0/0"]
+}
+
 resource "aws_security_group_rule" "allow-outbound" {
   from_port         = 0
   protocol          = "-1"
