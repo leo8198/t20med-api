@@ -41,3 +41,8 @@ module "rds" {
   rds_subnet2 = "${module.vpc.private_subnet2}"
   vpc_id      = "${module.vpc.vpc_id}"
 }
+
+module "s3" {
+  source         = "./s3"
+  s3_bucket_name = "prod-t20med-bucket"
+}
