@@ -46,7 +46,7 @@ API documentation can be found [here](https://documenter.getpostman.com/view/109
 
 #### Production architecture
 
-Production architecture diagram can be found [here](https://drive.google.com/file/d/12CVwjbDr5v3IEJZHh8PUdEcjfWypydzd/view?usp=sharing)
+Production architecture diagram can be found [here](https://drive.google.com/file/d/1EY9eUtV_Pvxx2-tG49lSjR5N1k5-V6lu/view?usp=sharing)
 
 ### Deploy in production
 
@@ -57,3 +57,16 @@ It's recommended to use docker swarm and get the image from the company AWS ECR.
 ### Logging
 
 Access sentry dashboard
+
+
+### Create infrastructure using Terraform
+
+You can create an cloud infrastructure using Terraform. The code will create the following components in AWS: <br>
+
+- VPC with one public subnet and one private subnet
+- EC2 instances
+- Application Load Balancer (ALB)
+- Auto Scaling and target groups
+- Security Groups
+- S3 bucket
+- RDS Postgres database
