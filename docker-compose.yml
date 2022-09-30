@@ -26,5 +26,15 @@ services:
       - postgres
     hostname: monolith
 
+  appointments:
+    build:
+      context: .
+      dockerfile: Dockerfile.appointments
+    ports:
+      - '5001:5001'
+    depends_on:
+      - postgres
+    hostname: appointments
+
 volumes:
   postgres:
