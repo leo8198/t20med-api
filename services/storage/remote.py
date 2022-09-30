@@ -3,7 +3,7 @@ import base64
 import requests
 import boto3
 from config import settings
-from services.storage.crud.local import LocalStorage
+from services.storage.local import LocalStorage
 
 class RemoteStorage():
 
