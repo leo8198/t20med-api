@@ -1,9 +1,9 @@
 import base64
-from services.storage.crud.local import LocalStorage
-from services.storage.crud.remote import RemoteStorage
+from services.storage.local import LocalStorage
+from services.storage.remote import RemoteStorage
 from services.doctors.crud.doctors import DoctorManager
 from services.authentication.crud.authentication import Authentication, User
-from services.authentication.schemas.signup import SignUpDocuments
+from services.authentication.schemas.signup import SignUpDocuments 
 
 class AuthenticationController():
 
