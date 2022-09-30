@@ -6,8 +6,9 @@ import json
 
 class SQSConnector():
 
-    def __init__(self) -> None:
+    def __init__(self, queue: str) -> None:
         self.sqs_client = self._aws_instance()
+        self.queue = queue
 
     def _aws_instance(self):
         return boto3.client(
@@ -20,17 +21,17 @@ class SQSConnector():
     def _get_queue_url(self):
         
         response = self.sqs_client.get_queue_url(
-            QueueName="new-queue.fifo",
+            QueueName=self.queue,
         )
         return response["QueueUrl"]
     
-    def send_message(self,message: dict):
+    def send_message(self,message: dict, message_group_id: str):
         
 
         response = self.sqs_client.send_message(
             QueueUrl=self._get_queue_url(),
             MessageBody=json.dumps(message),
-            MessageGroupId="appointment",
+            MessageGroupId=message_group_id,
             MessageDeduplicationId=self._generate_id()
         )
         if response['ResponseMetadata']['HTTPStatusCode'] == 200:

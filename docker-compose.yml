@@ -32,6 +32,8 @@ services:
       dockerfile: Dockerfile.appointments
     ports:
       - '5001:5001'
+    volumes:
+      - ./appointments:/home/root/app/appointments/
     depends_on:
       - postgres
     hostname: appointments

@@ -13,6 +13,7 @@ from services.payments.connectors.payments import PaymentConector
 from services.responses.errors import CustomError
 from services.responses.responses import CustomResponse
 from services.doctors.schemas.payment import PaymentRequest
+from services.sqs.main import SQSConnector
 
 # Endpoint to handle the authentication functions
 router = APIRouter(
@@ -87,6 +88,16 @@ async def post_doctors_consultation(
             return CustomError().error_404(
                 "Agenda timetable doesn't exist"
             )
+
+        sqs = SQSConnector('appointments.fifo')
+        sqs.send_message({
+            'agenda_id': agenda_id,
+            'doctor_id': doctor_id,
+            'patient_id': current_user.id,
+            'specialty_id': specialty_id
+        })
+
+        return CustomResponse().success_without_data()
 
         
         # Create record in the appointment table

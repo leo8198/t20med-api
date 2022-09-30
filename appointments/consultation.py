@@ -1,3 +1,4 @@
+import json
 from services.doctors.crud.agenda import AgendaManager
 from services.sqs.main import SQSConnector
 from services.doctors.crud.appointment import AppointmentManager
@@ -10,7 +11,7 @@ class ConsultationManager():
         '''
         Schedule an consultation between doctor and patient
         '''
-        sqs = SQSConnector()
+        sqs = SQSConnector('appointments.fifo')
 
         # Get the message from sqs
         message = sqs.receive_message()   
@@ -18,6 +19,8 @@ class ConsultationManager():
         if not message:
             print("No message")
             return None
+
+        message = json.loads(message[0]['Body'])
 
         
         agenda_id = message['agenda_id']
@@ -51,8 +54,15 @@ class ConsultationManager():
         )
 
         # TODO Post a request to the payment queue
-        sqs.send_message({
-            'payment': 'ok'
+        sqs_payment = SQSConnector('payments.fifo')
+        sqs_payment.send_message({
+            'type': 'pix',
+            'status': 'pending',
+            'info': {
+                'value': 100.0,
+                
+            }
+
         })
 
         return None
